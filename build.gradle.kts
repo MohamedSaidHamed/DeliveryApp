@@ -26,6 +26,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("com.auth0:java-jwt:3.18.1")
 	implementation("org.jetbrains.kotlin:kotlin-maven-noarg:1.5.21")
+	implementation("org.slf4j:slf4j-api:1.7.25")
 	compileOnly("org.jetbrains.kotlin:kotlin-maven-plugin:1.5.21")
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test"){

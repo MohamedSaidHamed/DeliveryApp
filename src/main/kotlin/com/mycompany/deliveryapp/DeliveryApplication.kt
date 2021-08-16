@@ -4,6 +4,7 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.mycompany.deliveryapp.model.User
 import com.mycompany.deliveryapp.service.UserService
+import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -12,6 +13,9 @@ import java.io.IOException
 
 @SpringBootApplication
 class DeliveryApplication{
+
+	private val logger = LoggerFactory.getLogger(javaClass)
+
 	@Bean
 	fun init(userService: UserService) = CommandLineRunner {
 		val mapper = jacksonObjectMapper()
@@ -20,7 +24,7 @@ class DeliveryApplication{
 			val users: List<User> = mapper.readValue<List<User>>(fileContent)
 			users.forEach { user -> userService.saveUser(user) }
 		} catch (e: IOException) {
-			println("Unable to save users: " + e.message)
+			logger.error("Unable to save users: " + e.message)
 		}
 	}
 }
